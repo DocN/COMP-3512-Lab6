@@ -6,11 +6,13 @@
 class Cities {
 private:
 	std::vector<City> cityList;
-	static const int CITIES_IN_TOUR = 20;
+	
 	static const int SHUFFLES = 32;
 	double fitness;
 
 public:
+	static const int CITIES_IN_TOUR = 20;
+
 	Cities();
 	void setFitness(double);
 	double getFitness();

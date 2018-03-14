@@ -98,11 +98,37 @@ Population * Population::select_parents() {
 	return parents;
 }
 
-Population * Population::crossover(Population * parents) {
+Cities * Population::crossover(Population * parents) {
+	Cities * child = new Cities();
+	int boundary_index = rand() % popList.at(0).CITIES_IN_TOUR;
+	child->setFitness(0);
 
+	for (int i = 0; i < boundary_index; i++) {
+		child->insertCity(parents->getPopList().at(0).getCityList().at(i));
+	}
+
+	while (boundary_index < popList.at(0).CITIES_IN_TOUR) {
+		for (int i = 0; i < popList.at(0).CITIES_IN_TOUR; i++) {
+			if (!contains_city(child, boundary_index, parents->getPopList().at(1).getCityList().at(i))) {
+				child->insertCity(parents->getPopList().at(1).getCityList().at(i));
+				boundary_index++;
+			}
+		}
+	}
+	return child;
 }
 
-Population * Population::iteration() {
+bool Population::contains_city(Cities * candidateTour, int length, City candidateCity) {
+	for (int i = 0; i < length; i++) {
+		City currentCity = candidateTour->getCityList().at(i);
+		if (currentCity.getName() == candidateCity.getName() && currentCity.getX() == candidateCity.getX() && currentCity.getY() == candidateCity.getY()) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void Population::iteration() {
 	for (int i = 0; i < ITERATIONS; i++) {
 		moveFittest();
 		for (int j = 0; j < (POPULATION_SIZE - NUMBER_OF_ELITES); j++) {

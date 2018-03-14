@@ -30,7 +30,8 @@ public:
 	double getShortestTourInPopulation();
 	Cities copyCities(Cities *);
 	void moveFittest();
-	Population * iteration();
+	void iteration();
+	bool contains_city(Cities *, int, City);
 	Population * select_parents();
-	Population * crossover(Population *);
+	Cities * crossover(Population *);
 };
