@@ -18,6 +18,10 @@ int City::getX() {
 int City::getY() {
 	return y;
 }
+
+char City::getName() {
+	return name;
+}
 void City::setX(int _x) {
 	x = _x;
 }
@@ -25,11 +29,12 @@ void City::setY(int _y) {
 	y = _y;
 }
 
+
 char City::generateName() {
 	char c;
 	int r;
 	r = rand() % 26;   // generate a random number
-	c = 'a' + r;            // Convert to a character from a-z
+	c = 'A' + r;            // Convert to a character from a-z
 	return c;
 }
 

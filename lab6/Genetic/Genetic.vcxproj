@@ -115,10 +115,12 @@
     <ClCompile Include="Cities.cpp" />
     <ClCompile Include="City.cpp" />
     <ClCompile Include="lab6.cpp" />
+    <ClCompile Include="Population.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cities.hpp" />
     <ClInclude Include="City.hpp" />
+    <ClInclude Include="Population.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

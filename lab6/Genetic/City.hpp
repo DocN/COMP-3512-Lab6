@@ -10,6 +10,7 @@ public:
 	City();
 	int getX();
 	int getY();
+	char getName();
 	void setX(int);
 	void setY(int);
 	char generateName();
