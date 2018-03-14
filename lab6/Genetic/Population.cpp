@@ -15,6 +15,10 @@ void Population::generatePop() {
 	}
 }
 
+void Population::insertPop(Cities city) {
+	popList.push_back(city);
+}
+
 void Population::printPopulation() {
 	for (int i = 0; i < popList.size(); i++) {
 		cout << "--------------------------------------------------" << endl;
@@ -85,13 +89,26 @@ Population * Population::select_parents() {
 	for (int i = 0; i < NUMBER_OF_PARENTS; i++) {
 		for (int j = 0; j < PARENT_POOL_SIZE; j++) {
 			int k = rand() % POPULATION_SIZE;
-			parentPool->getPopList.push_back(popList.at(k));
+			parentPool->insertPop(popList.at(k));
 		}
 		parentPool->determine_fitness();
 		parent_index = parentPool->getShortTourIndex();
-		parents->getPopList.push_back(parentPool->getPopList().at(parent_index));
+		parents->insertPop(getPopList().at(parent_index));
 	}
 	return parents;
+}
+
+Population * Population::crossover(Population * parents) {
+
+}
+
+Population * Population::iteration() {
+	for (int i = 0; i < ITERATIONS; i++) {
+		moveFittest();
+		for (int j = 0; j < (POPULATION_SIZE - NUMBER_OF_ELITES); j++) {
+			Population * parents = select_parents();
+		}
+	}
 }
 
 

@@ -17,10 +17,9 @@ int main() {
 	popu->printPopulation();
 	popu->shufflePop();
 	popu->printPopulation();
-	popu->determine_fitness(popu->getPopList());
+	popu->determine_fitness();
 	cout << popu->getShortTourIndex() << endl;
 	cout << popu->getShortestTourInPopulation() << endl;
-	popu->moveFittest();
 	system("PAUSE");
 	return 0;
 }
