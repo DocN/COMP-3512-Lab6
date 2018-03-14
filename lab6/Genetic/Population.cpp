@@ -68,6 +68,12 @@ void Population::determine_fitness() {
 	}
 }
 
+void Population::moveFittest() {
+	Cities bestRoute = popList.at(shortTourIndex);
+	popList.at(shortTourIndex) = popList.at(0);
+	popList.at(0) = bestRoute;
+}
+
 
 
 

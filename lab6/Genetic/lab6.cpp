@@ -11,7 +11,7 @@ using namespace std;
 
 int main() {
 	/* initialize random seed: */
-	srand(time(NULL));
+	srand((int) time(NULL));
 
 	Population * popu = new Population();
 	popu->printPopulation();
@@ -20,6 +20,7 @@ int main() {
 	popu->determine_fitness();
 	cout << popu->getShortTourIndex() << endl;
 	cout << popu->getShortestTourInPopulation() << endl;
+	popu->moveFittest();
 	system("PAUSE");
 	return 0;
 }

@@ -22,4 +22,5 @@ public:
 	void setShortestTourInPopulation(double);
 	double getShortestTourInPopulation();
 	Cities copyCities(Cities *);
+	void moveFittest();
 };
