@@ -65,7 +65,7 @@ void Population::determine_fitness() {
 	setShortTourIndex(0);
 	shortestTourInPopulation = (double)RAND_MAX; // Begin by assuming distance is enormous
 	double candidate_distance = 0;
-	for (int i = 0; i < popList.size(); i++) {
+	for (int i = 0; i < POPULATION_SIZE; i++) {
 		candidate_distance = popList.at(i).get_tour_distance();
 		popList.at(i).setFitness(FITNESS_SCALER / candidate_distance);
 		if (candidate_distance <= shortestTourInPopulation) {
@@ -129,10 +129,38 @@ bool Population::contains_city(Cities * candidateTour, int length, City candidat
 }
 
 void Population::iteration() {
+	Population * crosses = new Population();
 	for (int i = 0; i < ITERATIONS; i++) {
 		moveFittest();
 		for (int j = 0; j < (POPULATION_SIZE - NUMBER_OF_ELITES); j++) {
 			Population * parents = select_parents();
+			Cities * child = crossover(parents);
+			crosses->insertPop(*child);
+			delete(parents);
+		}
+		for (int i = NUMBER_OF_ELITES; i < POPULATION_SIZE; i++) {
+			popList.at(i) = crosses->getPopList().at(i - NUMBER_OF_ELITES);
+			popList.at(i).setFitness(0.00);
+		}
+		determine_fitness();
+		double best_iteration_distance = getPopList().at(shortTourIndex).get_tour_distance();
+		if (best_iteration_distance < shortestTourInPopulation) {
+			shortestTourInPopulation = best_iteration_distance;
+			cout << "New distance: " << best_iteration_distance << endl;
+		}
+	}
+
+}
+
+void Population::mutate() {
+	double mutates = 0.0;
+	for (int i = 0 + NUMBER_OF_ELITES; i < POPULATION_SIZE; i++) {
+		for (int j = 0; j < getPopList().at(0).CITIES_IN_TOUR; j++) {
+			mutates = (double)rand() / (double)RAND_MAX;
+			if (mutates <= MUTATION_RATE) {
+				int k = rand() % (getPopList().at(0).CITIES_IN_TOUR);
+				getPopList().at(i).swapCities(j, k);
+			}
 		}
 	}
 }

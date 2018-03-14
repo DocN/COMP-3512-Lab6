@@ -81,5 +81,11 @@ double Cities::get_tour_distance() {
 	return distance;
 }
 
+void Cities::swapCities(int indexOne, int indexTwo) {
+	City tempCity = getCityList().at(indexOne);
+	getCityList().at(indexOne) = getCityList().at(indexTwo);
+	getCityList().at(indexTwo) = tempCity;
+}
+
 
 

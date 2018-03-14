@@ -24,4 +24,5 @@ public:
 	void shuffleCities();
 	double distance_between_cities(City, City);
 	double get_tour_distance();
+	void swapCities(int, int);
 };

@@ -20,6 +20,7 @@ int main() {
 	popu->determine_fitness();
 	cout << popu->getShortTourIndex() << endl;
 	cout << popu->getShortestTourInPopulation() << endl;
+	popu->iteration();
 	system("PAUSE");
 	return 0;
 }
